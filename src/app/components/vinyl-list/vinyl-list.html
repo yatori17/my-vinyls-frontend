@@ -1,0 +1,35 @@
+<div class="search-section">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="🔍 Buscar por álbum, artista ou gênero..." class="search-input">
+    </div>
+
+    <div class="section-title">
+      <h2>Sua Coleção</h2>
+      <span class="count">{{ filteredVinyls.length }} discos</span>
+    </div>
+    
+    <div class="grid" *ngIf="filteredVinyls.length > 0">
+      <div class="card" *ngFor="let vinyl of filteredVinyls">
+        <div class="card-header">
+          <span class="vinyl-icon">🎵</span>
+          <span class="badge" [ngClass]="getStateClass(vinyl.conservation_state)">
+            {{ vinyl.conservation_state }}
+          </span>
+        </div>
+        <div class="card-info">
+          <h3>{{ vinyl.name }}</h3>
+          <p class="artist">{{ vinyl.artist }}</p>
+          <div class="meta">
+            <span>{{ vinyl.year }}</span> • <span>{{ vinyl.genre }}</span>
+          </div>
+          <div class="actions">
+  <button class="btn-details" (click)="viewDetails(vinyl)">Detalhes</button>
+  <button class="btn-edit" (click)="edit.emit(vinyl)">Editar</button>
+  <button class="btn-delete" (click)="delete.emit(vinyl.id)">Remover</button>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="filteredVinyls.length === 0" class="empty">
+      <p>Nenhum disco encontrado na estante.</p>
+    </div>
