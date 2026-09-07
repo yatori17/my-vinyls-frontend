@@ -4,8 +4,23 @@
         <div class="form-grid">
           <div class="input-field">
             <label>Título do Álbum</label>
-            <input type="text" [(ngModel)]="vinylData.name" name="name" placeholder="Ex: Rumours" required>
-          </div>
+  <input
+    type="text"
+    [(ngModel)]="vinylData.name"
+    name="name"
+    placeholder="Ex: Rumours"
+    required
+    [matAutocomplete]="auto"
+    (ngModelChange)="onNameChange($event)">
+    <mat-autocomplete #auto="matAutocomplete"
+    [displayWith]="displayFn"
+    (optionSelected)="onSelectDiscogsItem($event.option.value)">
+    <mat-option *ngFor="let item of externalResults" [value]="item">
+      {{ item.title }}
+      <span *ngIf="item.year"> ({{ item.year }})</span>
+    </mat-option>
+  </mat-autocomplete>
+            </div>
           <div class="input-field">
             <label>Artista</label>
             <input type="text" [(ngModel)]="vinylData.artist" name="artist" placeholder="Ex: Fleetwood Mac" required>

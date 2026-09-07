@@ -4,7 +4,7 @@ import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { VinylFormComponent } from './components/vinyl-form/vinyl-form';
 import { VinylListComponent } from './components/vinyl-list/vinyl-list';
-import { VinylService, Vinyl } from './services/vinyl';
+import { VinylService, Vinyl } from './services/vinyl.service';
 import { MatDialog } from '@angular/material/dialog';
 import { VinylModalComponent } from '../app/components/vinyl-modal/vinyl-modal';
 import { ConfirmDialogComponent } from '../app/components/confirm-dialog-data/confirm-dialog-data';

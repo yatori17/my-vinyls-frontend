@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
-import { Vinyl } from '../../services/vinyl';
+import { Vinyl } from '../../services/vinyl.service';
 
 @Component({
   selector: 'app-vinyl-modal',

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { VinylService, Vinyl } from '../../services/vinyl';
+import { VinylService, Vinyl } from '../../services/vinyl.service';
 
 @Component({
   selector: 'app-vinyl-list',

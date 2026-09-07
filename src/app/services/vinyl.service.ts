@@ -35,4 +35,8 @@ export class VinylService {
   updateVinyl(id: number, vinyl: Vinyl): Observable<any> {
   return this.http.put(`${this.apiUrl}/vinyl/${id}`, vinyl);
 }
+
+searchExternalVinyl(query: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/external-vinyl?query=${query}`);
+  }
 }
