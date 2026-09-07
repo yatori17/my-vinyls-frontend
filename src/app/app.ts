@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
@@ -15,18 +15,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   standalone: true,
   imports: [CommonModule, VinylListComponent, Header, Footer],
   templateUrl: './app.html',
-  styleUrls: ['./app.css']})
+  styleUrls: ['./app.css']
+})
 export class AppComponent implements OnInit {
-  vinyls: Vinyl[] = [];
+  vinyls = signal<Vinyl[]>([]);
   isEditing: boolean = false;
-  
+  isLoading = signal<boolean>(true);
+
   currentVinyl: Vinyl = this.getEmptyVinyl();
   dialog = inject(MatDialog);
-    snackBar = inject(MatSnackBar);
+  snackBar = inject(MatSnackBar);
 
-  
-
-  constructor(private vinylService: VinylService) {} 
+  constructor(private vinylService: VinylService) { }
   ngOnInit(): void {
     this.loadVinyls();
   }
@@ -42,36 +42,41 @@ export class AppComponent implements OnInit {
   }
 
   loadVinyls(): void {
+    this.isLoading.set(true);
     this.vinylService.getVinyls().subscribe({
       next: (data) => {
-        this.vinyls = data.vinyls || [];
+        this.vinyls.set(data.vinyls || []);
+        this.isLoading.set(false);
       },
-      error: (err) => console.error('Erro ao buscar vinis:', err)
+      error: (err) => {
+        console.error('Erro ao buscar vinis:', err);
+        this.isLoading.set(false);
+      }
     });
   }
 
   editVinyl(vinyl: Vinyl): void {
-  this.currentVinyl = { ...vinyl }; // clona pra não editar direto na lista
-  this.isEditing = true;
-}
+    this.currentVinyl = { ...vinyl }; // clona pra não editar direto na lista
+    this.isEditing = true;
+  }
 
-private showSuccess(message: string): void {
-  this.snackBar.open(message, 'Fechar', {
-    duration: 3000,
-    panelClass: ['snack-success'],
-    verticalPosition: 'top',
-    horizontalPosition: 'center'
-  });
-}
+  private showSuccess(message: string): void {
+    this.snackBar.open(message, 'Fechar', {
+      duration: 3000,
+      panelClass: ['snack-success'],
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    });
+  }
 
-private showError(message: string): void {
-  this.snackBar.open(message, 'Fechar', {
-    duration: 4000,
-    panelClass: ['snack-error'],
-    verticalPosition: 'top',
-    horizontalPosition: 'center'
-  });
-}
+  private showError(message: string): void {
+    this.snackBar.open(message, 'Fechar', {
+      duration: 4000,
+      panelClass: ['snack-error'],
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    });
+  }
   handleSave(vinyl: Vinyl): void {
     if (this.isEditing && vinyl.id) {
       this.vinylService.updateVinyl(vinyl.id, vinyl).subscribe({
@@ -102,31 +107,31 @@ private showError(message: string): void {
     }
   }
 
-openAddModal(): void {
-  this.currentVinyl = this.getEmptyVinyl();
-  this.isEditing = false;
-  this.openFormDialog();
-}
+  openAddModal(): void {
+    this.currentVinyl = this.getEmptyVinyl();
+    this.isEditing = false;
+    this.openFormDialog();
+  }
 
-openEditModal(vinyl: Vinyl): void {
-  this.currentVinyl = { ...vinyl };
-  this.isEditing = true;
-  this.openFormDialog();
-}
+  openEditModal(vinyl: Vinyl): void {
+    this.currentVinyl = { ...vinyl };
+    this.isEditing = true;
+    this.openFormDialog();
+  }
 
-private openFormDialog(): void {
-  const dialogRef = this.dialog.open(VinylFormComponent, {
-  width: '500px',
-    panelClass: 'dark-dialog',
-    data: { vinylData: this.currentVinyl, isEditing: this.isEditing }
-  });
+  private openFormDialog(): void {
+    const dialogRef = this.dialog.open(VinylFormComponent, {
+      width: '500px',
+      panelClass: 'dark-dialog',
+      data: { vinylData: this.currentVinyl, isEditing: this.isEditing }
+    });
 
-  dialogRef.afterClosed().subscribe((result: Vinyl | undefined) => {
-    if (result) {
-      this.handleSave(result);
-    }
-  });
-}
+    dialogRef.afterClosed().subscribe((result: Vinyl | undefined) => {
+      if (result) {
+        this.handleSave(result);
+      }
+    });
+  }
 
   deleteVinyl(id?: number): void {
     if (!id) return;
@@ -157,9 +162,9 @@ private openFormDialog(): void {
   }
 
   showDetails(vinyl: Vinyl) {
-  this.dialog.open(VinylModalComponent, {
-    width: '450px',
-    data: { title: 'Detalhes do Vinil', vinyl }
-  });
-}
+    this.dialog.open(VinylModalComponent, {
+      width: '450px',
+      data: { title: 'Detalhes do Vinil', vinyl }
+    });
+  }
 }

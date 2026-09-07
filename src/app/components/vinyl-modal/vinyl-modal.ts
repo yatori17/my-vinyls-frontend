@@ -9,7 +9,8 @@ import { Vinyl } from '../../services/vinyl.service';
   imports: [CommonModule, MatDialogModule],
   template: `
     <div class="modal-header">
-      <div class="disc-icon">💿</div>
+      <img *ngIf="data.vinyl?.photo_url" [src]="data.vinyl?.photo_url" alt="Capa do disco" class="cover-photo">
+      <div *ngIf="!data.vinyl?.photo_url" class="disc-icon"></div>
       <div>
         <h2 mat-dialog-title>{{ data.vinyl?.name || data.title }}</h2>
         <p class="artist" *ngIf="data.vinyl">{{ data.vinyl.artist }}</p>
@@ -61,6 +62,13 @@ import { Vinyl } from '../../services/vinyl.service';
       line-height: 1;
     }
 
+    .cover-photo {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
 
     h2 {
       color: #fff !important;

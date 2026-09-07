@@ -8,11 +8,12 @@
   </div>
 
   <app-vinyl-list
-    [vinyls]="vinyls"
-    (delete)="deleteVinyl($event)"
-    (edit)="openEditModal($event)"
-    (details)="showDetails($event)">
-  </app-vinyl-list>
+  [vinyls]="vinyls()"
+  [isLoading]="isLoading()"
+  (delete)="deleteVinyl($event)"
+  (details)="showDetails($event)"
+  (edit)="openEditModal($event)">
+</app-vinyl-list>
 </div>
 
 <app-footer></app-footer>

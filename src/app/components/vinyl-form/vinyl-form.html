@@ -1,52 +1,50 @@
 <div class="form-card">
-      <h3>{{ isEditing ? 'Editar Disco' : 'Adicionar Novo Disco' }}</h3>
-      <form (submit)="onSubmit(); $event.preventDefault()">
-        <div class="form-grid">
-          <div class="input-field">
-            <label>Título do Álbum</label>
-  <input
-    type="text"
-    [(ngModel)]="vinylData.name"
-    name="name"
-    placeholder="Ex: Rumours"
-    required
-    [matAutocomplete]="auto"
-    (ngModelChange)="onNameChange($event)">
-    <mat-autocomplete #auto="matAutocomplete"
-    [displayWith]="displayFn"
-    (optionSelected)="onSelectDiscogsItem($event.option.value)">
-    <mat-option *ngFor="let item of externalResults" [value]="item">
-      {{ item.title }}
-      <span *ngIf="item.year"> ({{ item.year }})</span>
-    </mat-option>
-  </mat-autocomplete>
-            </div>
-          <div class="input-field">
-            <label>Artista</label>
-            <input type="text" [(ngModel)]="vinylData.artist" name="artist" placeholder="Ex: Fleetwood Mac" required>
-          </div>
-          <div class="input-field">
-            <label>Ano</label>
-            <input type="number" [(ngModel)]="vinylData.year" name="year" placeholder="1977">
-          </div>
-          <div class="input-field">
-            <label>Gênero</label>
-            <input type="text" [(ngModel)]="vinylData.genre" name="genre" placeholder="Rock">
-          </div>
-          <div class="input-field full-width">
-            <label>Estado de Conservação</label>
-            <select [(ngModel)]="vinylData.conservation_state" name="conservation_state">
-              <option value="Novo (M)">Novo (M)</option>
-              <option value="Excelente (NM)">Excelente (NM)</option>
-              <option value="Muito Bom (VG+)">Muito Bom (VG+)</option>
-              <option value="Bom (VG)">Bom (VG)</option>
-              <option value="Regular (G)">Regular (G)</option>
-            </select>
-          </div>
-        </div>
-<button type="button" mat-button (click)="dialogRef.close()">Cancelar</button>
-<button type="submit" mat-raised-button color="primary">
-  {{ isEditing ? 'Salvar Alterações' : 'Adicionar Disco' }}
-</button>     
- </form>
+  <h3>{{ isEditing ? 'Editar Disco' : 'Adicionar Novo Disco' }}</h3>
+  <form (submit)="onSubmit(); $event.preventDefault()">
+    <div class="form-grid">
+      <div class="input-field">
+        <label>Título do Álbum</label>
+        <input type="text" [(ngModel)]="vinylData.name" name="name" placeholder="Ex: Rumours" required
+          [matAutocomplete]="auto" (ngModelChange)="onNameChange($event)">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+          (optionSelected)="onSelectDiscogsItem($event.option.value)">
+          <mat-option *ngFor="let item of externalResults" [value]="item">
+            {{ item.title }}
+            <span *ngIf="item.year"> ({{ item.year }})</span>
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+      <div class="input-field">
+        <label>Artista</label>
+        <input type="text" [(ngModel)]="vinylData.artist" name="artist" placeholder="Ex: Fleetwood Mac" required>
+      </div>
+      <div class="input-field">
+        <label>Ano</label>
+        <input type="number" [(ngModel)]="vinylData.year" name="year" placeholder="1977">
+      </div>
+      <div class="input-field">
+        <label>Gênero</label>
+        <input type="text" [(ngModel)]="vinylData.genre" name="genre" placeholder="Rock">
+      </div>
+      <div class="input-field full-width">
+        <label>Estado de Conservação</label>
+        <select [(ngModel)]="vinylData.conservation_state" name="conservation_state">
+          <option value="Novo (M)">Novo (M)</option>
+          <option value="Excelente (NM)">Excelente (NM)</option>
+          <option value="Muito Bom (VG+)">Muito Bom (VG+)</option>
+          <option value="Bom (VG)">Bom (VG)</option>
+          <option value="Regular (G)">Regular (G)</option>
+        </select>
+      </div>
+      <div class="input-field full-width">
+        <label>URL da Foto</label>
+        <input type="text" [(ngModel)]="vinylData.photo_url" name="photo_url" placeholder="https://...">
+      </div>
+      <img *ngIf="vinylData.photo_url" [src]="vinylData.photo_url" alt="Prévia da capa" class="foto-preview">
     </div>
+    <button type="button" mat-button (click)="dialogRef.close()">Cancelar</button>
+    <button type="submit" mat-raised-button color="primary">
+      {{ isEditing ? 'Salvar Alterações' : 'Adicionar Disco' }}
+    </button>
+  </form>
+</div>

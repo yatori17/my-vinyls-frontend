@@ -13,8 +13,8 @@ import { debounceTime, distinctUntilChanged, switchMap, filter } from 'rxjs/oper
 @Component({
   selector: 'app-vinyl-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatDialogModule, MatFormFieldModule, 
-    MatInputModule, 
+  imports: [CommonModule, FormsModule, MatDialogModule, MatFormFieldModule,
+    MatInputModule,
     MatAutocompleteModule],
   templateUrl: './vinyl-form.html',
   styleUrl: './vinyl-form.css',
@@ -30,37 +30,47 @@ export class VinylFormComponent {
   constructor(
     public dialogRef: MatDialogRef<VinylFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { vinylData: Vinyl; isEditing: boolean },
-    private vinylService: VinylService 
+    private vinylService: VinylService
   ) {
     this.vinylData = { ...data.vinylData };
     this.isEditing = data.isEditing;
   }
 
   ngOnInit(): void {
-  this.nameQuery$.pipe(
-    filter(q => q.length >= 4),
-    debounceTime(600),
-    distinctUntilChanged(),
-    switchMap(q => this.vinylService.searchExternalVinyl(q))
-  ).subscribe({
-    next: (res: any) => this.externalResults = res.results || [],
-    error: (err: any) => console.error('Erro ao buscar no Discogs:', err)
-  });
-}
+    this.nameQuery$.pipe(
+      filter(q => q.length >= 4),
+      debounceTime(600),
+      distinctUntilChanged(),
+      switchMap(q => this.vinylService.searchExternalVinyl(q))
+    ).subscribe({
+      next: (res: any) => this.externalResults = res.results || [],
+      error: (err: any) => console.error('Erro ao buscar no Discogs:', err)
+    });
+  }
 
   onNameChange(query: string): void {
-  if (!query) {
-    this.externalResults = [];
-    return;
+    if (!query) {
+      this.externalResults = [];
+      return;
+    }
+    this.nameQuery$.next(query);
   }
-  this.nameQuery$.next(query);
-}
   onSelectDiscogsItem(item: any): void {
     this.vinylData.name = item.title;
+    var artistName = item.title.split("-");
+    if (artistName) {
+      this.vinylData.artist = artistName[0];
+    }
     if (item.year) {
       this.vinylData.year = item.year;
     }
-    
+    if (item.cover_image || item.thumb) {
+      this.vinylData.photo_url = item.cover_image || item.thumb;
+    }
+    if (item.genre) {
+      this.vinylData.genre = item.genre[0];
+    }
+
     this.externalResults = [];
   }
 
@@ -73,7 +83,7 @@ export class VinylFormComponent {
   }
 
   displayFn = (item: any): string => {
-  if (!item) return '';
-  return typeof item === 'string' ? item : item.title;
-};
+    if (!item) return '';
+    return typeof item === 'string' ? item : item.title;
+  };
 }

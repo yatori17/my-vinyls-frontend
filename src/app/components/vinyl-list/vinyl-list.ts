@@ -10,23 +10,20 @@ import { VinylService, Vinyl } from '../../services/vinyl.service';
   templateUrl: './vinyl-list.html',
   styleUrls: ['./vinyl-list.css']
 })
-export class VinylListComponent implements OnInit {
-
-  ngOnInit(): void {
-  }
-
+export class VinylListComponent {
   @Input() vinyls: Vinyl[] = [];
+  @Input() isLoading: boolean = false;
   @Output() delete = new EventEmitter<number>();
-@Output() details = new EventEmitter<Vinyl>();
-@Output() edit = new EventEmitter<Vinyl>();
+  @Output() details = new EventEmitter<Vinyl>();
+  @Output() edit = new EventEmitter<Vinyl>();
 
   searchTerm: string = '';
 
   get filteredVinyls(): Vinyl[] {
     if (!this.searchTerm) return this.vinyls;
     const term = this.searchTerm.toLowerCase();
-    return this.vinyls.filter(v => 
-      v.name.toLowerCase().includes(term) || 
+    return this.vinyls.filter(v =>
+      v.name.toLowerCase().includes(term) ||
       v.artist.toLowerCase().includes(term) ||
       v.genre.toLowerCase().includes(term)
     );
