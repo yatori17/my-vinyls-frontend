@@ -100,3 +100,11 @@ ng generate component component-name
 ```bash
 ng test
 ```
+
+## API Externa
+
+Este projeto consome a [Discogs API](https://www.discogs.com/developers) para busca de álbuns.
+
+- **Autenticação**: requer um token pessoal (gratuito), obtido em [discogs.com/settings/developers](https://www.discogs.com/settings/developers)
+- **Licença de uso**: gratuita para uso pessoal/não comercial, conforme os [termos da Discogs API](https://www.discogs.com/developers)
+- **Rota utilizada**: `GET /database/search` (busca de releases por nome/artista)
