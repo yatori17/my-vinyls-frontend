@@ -7,24 +7,24 @@ Aplicação web desenvolvida em **Angular** (utilizando componentes *standalone*
 ```mermaid
 flowchart LR
     subgraph Browser
-        A[Interface Front-End\n(Angular + Nginx)]
+        A[Interface Front-End<br/>Angular + Nginx]
     end
 
     subgraph Backend Container
-        B[API Back-End\n(Flask + Python)]
+        B[API Back-End<br/>Flask + Python]
     end
 
     subgraph Database
-        C[(SQLite / Banco de Dados)]
+        C[(SQLite)]
     end
 
     subgraph External API
-        D[API Externa\n(Discogs API)]
+        D[API Externa<br/>Discogs API]
     end
 
-    A -- "HTTP / REST\n(GET, POST, PUT, DELETE)" --> B
-    B -- "Consulta / Dados" --> C
-    B -- "Busca Externa / Proxy\n(Discogs API)" --> D
+    A -->|HTTP / REST<br/>GET, POST, PUT, DELETE| B
+    B -->|Consulta / Dados| C
+    B -->|Busca Externa| D
 
 ## Funcionalidades
 
