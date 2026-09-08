@@ -25,6 +25,7 @@ flowchart LR
     A -->|HTTP / REST<br/>GET, POST, PUT, DELETE| B
     B -->|Consulta / Dados| C
     B -->|Busca Externa| D
+```
 
 ## Funcionalidades
 
@@ -82,7 +83,7 @@ cd my-vinyls-frontend
    docker run -d -p 8080:80 --name vinyl-frontend-container my-vinyls-frontend
 ```
 
-5. Comandos Úteis do Angular CLI
+6. Comandos Úteis do Angular CLI
 
 ### Desenvolvimento Local
 ```bash
