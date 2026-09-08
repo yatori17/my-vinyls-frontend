@@ -2,7 +2,7 @@
 
 Aplicação web desenvolvida em **Angular** (utilizando componentes *standalone* e Angular Material) para servir como interface do gerenciador de coleção de discos de vinil, contando com busca integrada em tempo real via API do Discogs.
 
-## 📐 Arquitetura da Aplicação (Cenário 1.1)
+## Arquitetura da Aplicação (Cenário 1.1)
 
 ```mermaid
 flowchart LR
@@ -24,8 +24,7 @@ flowchart LR
 
     A -- "HTTP / REST\n(GET, POST, PUT, DELETE)" --> B
     B -- "Consulta / Dados" --> C
-    A -- "Busca de Álbuns\n(via Backend/Proxy)" --> D
-    B -- "Busca de Dados Externos" --> D
+    B -- "Busca Externa / Proxy\n(Discogs API)" --> D
 
 ## Funcionalidades
 
