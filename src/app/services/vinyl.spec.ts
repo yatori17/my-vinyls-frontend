@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Vinyl } from './vinyl';
+import { VinylService } from './vinyl.service';
 
 describe('Vinyl', () => {
-  let service: Vinyl;
+  let service: VinylService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Vinyl);
+    service = TestBed.inject(VinylService);
   });
 
   it('should be created', () => {

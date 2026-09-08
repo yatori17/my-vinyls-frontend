@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VinylForm } from './vinyl-form';
+import { VinylModalComponent } from './vinyl-modal.component';
 
-describe('VinylForm', () => {
-  let component: VinylForm;
-  let fixture: ComponentFixture<VinylForm>;
+describe('VinylModalComponent', () => {
+  let component: VinylModalComponent;
+  let fixture: ComponentFixture<VinylModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VinylForm],
+      imports: [VinylModalComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(VinylForm);
+    fixture = TestBed.createComponent(VinylModalComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

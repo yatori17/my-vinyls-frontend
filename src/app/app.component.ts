@@ -1,21 +1,22 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Header } from './components/header/header';
-import { Footer } from './components/footer/footer';
-import { VinylFormComponent } from './components/vinyl-form/vinyl-form';
-import { VinylListComponent } from './components/vinyl-list/vinyl-list';
-import { VinylService, Vinyl } from './services/vinyl.service';
+import { Header } from './components/header/header.component';
+import { Footer } from './components/footer/footer.component';
+import { VinylFormComponent } from './components/vinyl-form/vinyl-form.component';
+import { VinylListComponent } from './components/vinyl-list/vinyl-list.component';
+import { VinylService } from './services/vinyl.service';
 import { MatDialog } from '@angular/material/dialog';
-import { VinylModalComponent } from '../app/components/vinyl-modal/vinyl-modal';
-import { ConfirmDialogComponent } from '../app/components/confirm-dialog-data/confirm-dialog-data';
+import { Vinyl } from './models/vinyl.model';
+import { VinylModalComponent } from './components/vinyl-modal/vinyl-modal.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog-data/confirm-dialog-data.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, VinylListComponent, Header, Footer],
-  templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   vinyls = signal<Vinyl[]>([]);

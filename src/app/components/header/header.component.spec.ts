@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VinylModal } from './vinyl-modal';
+import { Header } from './header.component';
 
-describe('VinylModal', () => {
-  let component: VinylModal;
-  let fixture: ComponentFixture<VinylModal>;
+describe('Header', () => {
+  let component: Header;
+  let fixture: ComponentFixture<Header>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VinylModal],
+      imports: [Header],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(VinylModal);
+    fixture = TestBed.createComponent(Header);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

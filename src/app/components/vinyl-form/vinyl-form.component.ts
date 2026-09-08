@@ -2,12 +2,13 @@ import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
-import { Vinyl, VinylService } from '../../services/vinyl.service';
+import { VinylService } from '../../services/vinyl.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, filter } from 'rxjs/operators';
+import { Vinyl } from '../../models/vinyl.model';
 
 
 @Component({
@@ -16,8 +17,8 @@ import { debounceTime, distinctUntilChanged, switchMap, filter } from 'rxjs/oper
   imports: [CommonModule, FormsModule, MatDialogModule, MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule],
-  templateUrl: './vinyl-form.html',
-  styleUrl: './vinyl-form.css',
+  templateUrl: './vinyl-form.component.html',
+  styleUrl: './vinyl-form.component.css',
 })
 export class VinylFormComponent {
   vinylData: Vinyl;

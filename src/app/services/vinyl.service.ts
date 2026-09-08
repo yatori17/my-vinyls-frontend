@@ -1,17 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Vinyl {
-  id?: number;
-  name: string;
-  genre: string;
-  year: number;
-  artist: string;
-  conservation_state: string;
-  photo_url?: string;
-  created_datetime?: string;
-}
+import { Vinyl } from '../models/vinyl.model';
 
 @Injectable({
   providedIn: 'root'

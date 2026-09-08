@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VinylList } from './vinyl-list';
+import { ConfirmDialogComponent } from './confirm-dialog-data.component';
 
-describe('VinylList', () => {
-  let component: VinylList;
-  let fixture: ComponentFixture<VinylList>;
+describe('ConfirmDialogDataComponent', () => {
+  let component: ConfirmDialogComponent;
+  let fixture: ComponentFixture<ConfirmDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VinylList],
+      imports: [ConfirmDialogComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(VinylList);
+    fixture = TestBed.createComponent(ConfirmDialogComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

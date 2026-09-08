@@ -1,14 +1,15 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { VinylService, Vinyl } from '../../services/vinyl.service';
+import { VinylService } from '../../services/vinyl.service';
+import { Vinyl } from '../../models/vinyl.model';
 
 @Component({
   selector: 'app-vinyl-list',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './vinyl-list.html',
-  styleUrls: ['./vinyl-list.css']
+  templateUrl: './vinyl-list.component.html',
+  styleUrls: ['./vinyl-list.component.css']
 })
 export class VinylListComponent {
   @Input() vinyls: Vinyl[] = [];

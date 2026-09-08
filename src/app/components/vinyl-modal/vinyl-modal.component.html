@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <img *ngIf="data.vinyl?.photo_url" [src]="data.vinyl?.photo_url" alt="Capa do disco" class="cover-photo">
+    <div *ngIf="!data.vinyl?.photo_url" class="disc-icon"></div>
+    <div>
+        <h2 mat-dialog-title>{{ data.vinyl?.name || data.title }}</h2>
+        <p class="artist" *ngIf="data.vinyl">{{ data.vinyl.artist }}</p>
+    </div>
+</div>
+
+<mat-dialog-content>
+    <p *ngIf="data.message">{{ data.message }}</p>
+
+    <div *ngIf="data.vinyl" class="details-grid">
+        <div class="detail-item">
+            <span class="label">Ano</span>
+            <span class="value">{{ data.vinyl.year }}</span>
+        </div>
+        <div class="detail-item">
+            <span class="label">Gênero</span>
+            <span class="value">{{ data.vinyl.genre }}</span>
+        </div>
+        <div class="detail-item full-width">
+            <span class="label">Estado de Conservação</span>
+            <span class="state-badge">{{ data.vinyl.conservation_state }}</span>
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>
