@@ -7,7 +7,7 @@ import { Vinyl } from '../models/vinyl.model';
   providedIn: 'root'
 })
 export class VinylService {
-  private apiUrl = 'http://localhost:5000'; // Endereço do seu Flask
+  private apiUrl = 'http://localhost:5000';
 
   constructor(private http: HttpClient) {}
 

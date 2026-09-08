@@ -2,6 +2,31 @@
 
 Aplicação web desenvolvida em **Angular** (utilizando componentes *standalone* e Angular Material) para servir como interface do gerenciador de coleção de discos de vinil, contando com busca integrada em tempo real via API do Discogs.
 
+## 📐 Arquitetura da Aplicação (Cenário 1.1)
+
+```mermaid
+flowchart LR
+    subgraph Browser
+        A[Interface Front-End\n(Angular + Nginx)]
+    end
+
+    subgraph Backend Container
+        B[API Back-End\n(Flask + Python)]
+    end
+
+    subgraph Database
+        C[(SQLite / Banco de Dados)]
+    end
+
+    subgraph External API
+        D[API Externa\n(Discogs API)]
+    end
+
+    A -- "HTTP / REST\n(GET, POST, PUT, DELETE)" --> B
+    B -- "Consulta / Dados" --> C
+    A -- "Busca de Álbuns\n(via Backend/Proxy)" --> D
+    B -- "Busca de Dados Externos" --> D
+
 ## Funcionalidades
 
 - **Gerenciamento Visual**: Listagem completa dos vinis cadastrados com suporte a filtros e paginação.
