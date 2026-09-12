@@ -1,5 +1,8 @@
 <div class="form-card">
   <h3>{{ isEditing ? 'Editar Disco' : 'Adicionar Novo Disco' }}</h3>
+  <div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
   <form (submit)="onSubmit(); $event.preventDefault()">
     <div class="form-grid">
       <div class="input-field">
@@ -20,16 +23,16 @@
       </div>
       <div class="input-field">
         <label>Ano</label>
-        <input type="number" [(ngModel)]="vinylData.year" name="year" placeholder="1977">
-      </div>
+<input type="number" [(ngModel)]="vinylData.year" name="year" placeholder="1977" required>      </div>
       <div class="input-field">
         <label>Gênero</label>
         <input type="text" [(ngModel)]="vinylData.genre" name="genre" placeholder="Rock">
       </div>
       <div class="input-field full-width">
         <label>Estado de Conservação</label>
-        <select [(ngModel)]="vinylData.conservation_state" name="conservation_state">
-          <option value="Novo (M)">Novo (M)</option>
+<select [(ngModel)]="vinylData.conservation_state" name="conservation_state" required> 
+  <option value=""></option>
+  <option value="Novo (M)">Novo (M)</option>
           <option value="Excelente (NM)">Excelente (NM)</option>
           <option value="Muito Bom (VG+)">Muito Bom (VG+)</option>
           <option value="Bom (VG)">Bom (VG)</option>

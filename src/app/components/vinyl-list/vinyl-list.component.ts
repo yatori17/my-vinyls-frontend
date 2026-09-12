@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { VinylService } from '../../services/vinyl.service';
 import { Vinyl } from '../../models/vinyl.model';
 
 @Component({
@@ -17,6 +16,7 @@ export class VinylListComponent {
   @Output() delete = new EventEmitter<number>();
   @Output() details = new EventEmitter<Vinyl>();
   @Output() edit = new EventEmitter<Vinyl>();
+  
 
   searchTerm: string = '';
 

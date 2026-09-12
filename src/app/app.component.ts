@@ -36,9 +36,9 @@ export class AppComponent implements OnInit {
     return {
       name: '',
       artist: '',
-      year: 2024,
-      genre: 'Rock',
-      conservation_state: 'Excelente (NM)'
+      year: null,
+      genre: '',
+      conservation_state: ''
     };
   }
 
