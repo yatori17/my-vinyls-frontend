@@ -40,6 +40,8 @@ export class VinylFormComponent {
     this.isEditing = data.isEditing;
   }
 
+  searchErrorMessage: string = ''; // novo
+
   ngOnInit(): void {
     this.nameQuery$.pipe(
       filter(q => q.length >= 4),
@@ -49,21 +51,28 @@ export class VinylFormComponent {
     ).subscribe({
       next: (res: any) => {
         this.externalResults = res.results || [];
+        this.searchErrorMessage = '';
         if (this.externalResults.length > 0) {
           this.autoTrigger.openPanel();
         }
       },
-      error: (err: any) => console.error('Erro ao buscar no Discogs:', err)
+      error: (err: any) => {
+        console.error('Erro ao buscar no Discogs:', err);
+        this.searchErrorMessage = 'Busca automática indisponível no momento. Preencha manualmente.';
+        this.externalResults = [];
+      }
     });
   }
 
   onNameChange(query: string): void {
+    this.searchErrorMessage = ''; // limpa ao digitar de novo
     if (!query) {
       this.externalResults = [];
       return;
     }
     this.nameQuery$.next(query);
   }
+  
   onSelectDiscogsItem(item: any): void {
     const parts = item.title.split(' - ');
     if (parts.length > 1) {

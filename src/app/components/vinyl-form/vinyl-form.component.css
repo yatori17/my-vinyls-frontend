@@ -39,6 +39,13 @@ label {
   font-weight: 600;
 }
 
+.search-error-hint {
+  display: block;
+  color: #999;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
 input,
 select {
   padding: 12px;
