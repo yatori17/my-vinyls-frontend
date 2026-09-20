@@ -7,7 +7,7 @@ Aplicação web desenvolvida em **Angular** (utilizando componentes *standalone*
 ```mermaid
 flowchart LR
     subgraph Browser
-        A[Interface Front-End<br/>Angular + Nginx]
+        A[Interface Front-End<br/>Angular]
     end
 
     subgraph Backend Container
@@ -41,7 +41,7 @@ flowchart LR
 - Angular (Standalone Components)
 - Angular Material
 - TypeScript & RxJS
-- Docker & Nginx (para produção)
+- Docker
 
 ---
 

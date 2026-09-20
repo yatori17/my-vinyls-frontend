@@ -26,3 +26,10 @@
   padding: 20px;
   font-family: 'Segoe UI', Roboto, sans-serif;
 }
+
+body {
+background-color: rgb(237, 233, 233);
+  color: #e0e0e0;           
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

@@ -15,4 +15,10 @@ export class VinylModalComponent {
     public dialogRef: MatDialogRef<VinylModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { title: string; message?: string; vinyl?: Vinyl }
   ) {}
+  
+   getStateClass(state: string): string {
+    if (state.includes('Novo') || state.includes('M')) return 'novo';
+    if (state.includes('Excelente') || state.includes('NM')) return 'excelente';
+    return 'bom';
+  }
 }

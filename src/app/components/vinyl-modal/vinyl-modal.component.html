@@ -21,7 +21,9 @@
         </div>
         <div class="detail-item full-width">
             <span class="label">Estado de Conservação</span>
-            <span class="state-badge">{{ data.vinyl.conservation_state }}</span>
+            <span class="badge" [ngClass]="getStateClass(data.vinyl.conservation_state)">
+        {{ data.vinyl.conservation_state }}
+      </span>
         </div>
     </div>
 </mat-dialog-content>
